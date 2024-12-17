@@ -356,7 +356,7 @@ const proactiveMessagesListEn = {
 
   //http://localhost:3000
   //https://reframe-ai.uc.r.appspot.com
-  const ENDPOINT = 'http://localhost:3000';
+  const ENDPOINT = 'https://reframe-ai.uc.r.appspot.com';
 
 
   const requestInitialization = async () => {
