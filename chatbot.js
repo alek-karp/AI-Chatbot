@@ -46,12 +46,58 @@
     },
   };
 
+const proactiveMessagesListEn = {
+  '/': {
+    firstTimeout: 0,
+    firstMessage: 'How can I assist you?',
+    secondMessage: null,
+    timeout: 0,
+  },
+  '/nieruchomosci': {
+    firstTimeout: 0,
+    firstMessage: 'Need help with your search? 🏢',
+    secondMessage: 'Talk to the AI agent',
+    timeout: 5000,
+  },
+  '/uslugi': {
+    firstTimeout: 0,
+    firstMessage: 'Do you need support?',
+    secondMessage: "Let's talk!",
+    timeout: 5000,
+  },
+  '/o-nas': {
+    firstTimeout: 0,
+    firstMessage: 'Do you need additional information?',
+    secondMessage: "Let's chat 👀",
+    timeout: 5000,
+  },
+  '/kalkulator-m2': {
+    firstTimeout: 0,
+    firstMessage: 'Looking to optimize your space? 📐',
+    secondMessage: 'Or searching for an office to rent?',
+    timeout: 5000,
+  },
+  '/blog': {
+    firstTimeout: 0,
+    firstMessage: 'Can we help you with something?',
+    secondMessage: 'Talk to our AI advisor 💬',
+    timeout: 5000,
+  },
+  '/kontakt': {
+    firstTimeout: 5000,
+    firstMessage: 'Do you need help?',
+    secondMessage: 'Leave your contact, and we’ll call you back! ☎️',
+    timeout: 8000,
+  },
+};
+
   const addMessagesToConversationHistory = (history) => {
     const {pathname} = window.location;
+    const isEnPath = pathname.includes('/en/');
   
     // Check if there are messages configured for the current path
-    if (proactiveMessagesList[pathname]) {
-      const config = proactiveMessagesList[pathname];
+    if (proactiveMessagesList[pathname] || (isEnPath && proactiveMessagesListEn[pathname])) {
+      const config = isEnPath ? proactiveMessagesListEn[pathname] : proactiveMessagesList[pathname];
   
       if(config.firstMessage){
         history.push({ role: 'assistant', content: config.firstMessage });
@@ -354,11 +400,14 @@
 }
 
 // Get the current page path
-const currentPath = window.location.pathname;
+const {pathname} = window.location;
 
 // Check if there are messages configured for the current path
-if (proactiveMessagesList[currentPath]) {
-  const config = proactiveMessagesList[currentPath];
+const isEnPath = pathname.includes('/en');
+
+// Check if there are messages configured for the current path
+if (proactiveMessagesList[pathname] || (isEnPath && proactiveMessagesListEn[pathname])) {
+  const config = isEnPath ? proactiveMessagesListEn[pathname] : proactiveMessagesList[pathname];
   
   // Function to add a message to the widget
   const addMessageToWidget = (message) => {
