@@ -124,7 +124,7 @@ const proactiveMessagesListEn = {
     style.innerHTML = `
     #chat-widget-container {
       position: fixed;
-      bottom: 20px;
+      bottom: 60px;
       right: 20px;
       flex-direction: column;
     }
@@ -135,6 +135,9 @@ const proactiveMessagesListEn = {
       overflow: hidden;
     }
     @media (max-width: 768px) {
+        #chat-widget-container {
+        bottom: 20px;
+      }
       #chat-popup {
         position: fixed;
         top: 0;
