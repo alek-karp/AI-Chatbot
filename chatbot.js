@@ -118,6 +118,10 @@ const proactiveMessagesListEn = {
       'beforeend',
       '<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css" rel="stylesheet">'
     );
+    document.head.insertAdjacentHTML(
+      'beforeend',
+      '<link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap" rel="stylesheet">'
+    );
   
     // Inject custom CSS
     const style = document.createElement('style');
@@ -127,12 +131,14 @@ const proactiveMessagesListEn = {
       bottom: 60px;
       right: 20px;
       flex-direction: column;
+      font-family: 'Tinos', serif; /* Apply Tinos font */
     }
     #chat-popup {
       height: 70vh;
       max-height: 70vh;
       transition: all 0.3s;
       overflow: hidden;
+      font-family: 'Tinos', serif; /* Apply Tinos font */
     }
     @media (max-width: 768px) {
         #chat-widget-container {
@@ -157,7 +163,7 @@ const proactiveMessagesListEn = {
     const chatWidgetContainer = document.createElement('div');
     chatWidgetContainer.id = 'chat-widget-container';
     chatWidgetContainer.className = 'flex flex-column justify-end items-end absolute z-[100]';
-    chatWidgetContainer.style.zIndex = '100';
+    chatWidgetContainer.style.zIndex = '1000';
     document.body.appendChild(chatWidgetContainer);
   
     // Inject the HTML for the widget
