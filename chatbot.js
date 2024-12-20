@@ -91,23 +91,28 @@ const proactiveMessagesListEn = {
   },
 };
 
-  const addMessagesToConversationHistory = (history) => {
-    const {pathname} = window.location;
-    const isEnPath = pathname.includes('/en/');
-  
-    // Check if there are messages configured for the current path
-    if (proactiveMessagesList[pathname] || (isEnPath && proactiveMessagesListEn[pathname])) {
-      const config = isEnPath ? proactiveMessagesListEn[pathname] : proactiveMessagesList[pathname];
-  
-      if(config.firstMessage){
-        history.push({ role: 'assistant', content: config.firstMessage });
-      }
-  
-      if(config.secondMessage) {
-        history.push({ role: 'assistant', content: config.secondMessage });
-      }
-    }
+const addMessagesToConversationHistory = (history) => {
+  const { pathname } = window.location;
+  const isEnPath = pathname.includes('/en/');
+  const proactiveMessages = isEnPath ? proactiveMessagesListEn : proactiveMessagesList;
+
+  // Special handling for exact match with home path ("/")
+  const matchedPath =
+    pathname === '/'
+      ? '/'
+      : Object.keys(proactiveMessages).find((key) => key !== '/' && pathname.includes(key));
+
+  if (!matchedPath) return; // No matching path found
+
+  const config = proactiveMessages[matchedPath];
+
+  const pushMessage = (message) => {
+    if (message) history.push({ role: 'assistant', content: message });
   };
+
+  pushMessage(config.firstMessage);
+  pushMessage(config.secondMessage);
+};
 
     let conversationHistory = [];
 
@@ -408,48 +413,27 @@ const proactiveMessagesListEn = {
 }
 
 // Get the current page path
-const {pathname} = window.location;
+const { pathname } = window.location;
 
-// Check if there are messages configured for the current path
+// Determine if the current path is in English
 const isEnPath = pathname.includes('/en');
 
-// Check if there are messages configured for the current path
-if (proactiveMessagesList[pathname] || (isEnPath && proactiveMessagesListEn[pathname])) {
-  const config = isEnPath ? proactiveMessagesListEn[pathname] : proactiveMessagesList[pathname];
-  
-  // Function to add a message to the widget
-  const addMessageToWidget = (message) => {
-    const widget = document.querySelector('#proactive-messages-container'); // Update with actual widget selector
-    if (widget && message) {
-      const messageElement = document.createElement('div');
-      messageElement.className = `
-        bg-white 
-        text-gray-700 
-        shadow-md 
-        rounded-lg 
-        p-2
-        text-sm
-        mb-2 
-        border 
-        border-gray-200
-        max-w-fit
-        w-fit
-        max-w-max 
-        flex 
-        text-right
-        self-end
-        justify-self-end
-      `;
-      messageElement.textContent = message;
-      widget.appendChild(messageElement, widget.firstChild); // Add message to the top of the widget
-    }
-  };
+// Select the appropriate proactive messages list
+const proactiveMessages = isEnPath ? proactiveMessagesListEn : proactiveMessagesList;
 
-  // Display first message after the specified timeout
+// Special handling for the home path to avoid matching everything
+let matchedPath = pathname === '/' 
+  ? '/' 
+  : Object.keys(proactiveMessages).find((key) => key !== '/' && pathname.includes(key));
+
+if (matchedPath) {
+  const config = proactiveMessages[matchedPath];
+
+  // Display the first message after the specified timeout
   setTimeout(() => {
     addMessageToWidget(config.firstMessage);
 
-    // Display second message if configured
+    // Display the second message if configured
     if (config.secondMessage) {
       setTimeout(() => {
         addMessageToWidget(config.secondMessage);
@@ -457,6 +441,33 @@ if (proactiveMessagesList[pathname] || (isEnPath && proactiveMessagesListEn[path
     }
   }, config.firstTimeout);
 }
+
+const addMessageToWidget = (message) => {
+  const widget = document.querySelector('#proactive-messages-container'); // Update with actual widget selector
+  if (widget && message) {
+    const messageElement = document.createElement('div');
+    messageElement.className = `
+      bg-white 
+      text-gray-700 
+      shadow-md 
+      rounded-lg 
+      p-2
+      text-sm
+      mb-2 
+      border 
+      border-gray-200
+      max-w-fit
+      w-fit
+      max-w-max 
+      flex 
+      text-right
+      self-end
+      justify-self-end
+    `;
+    messageElement.textContent = message;
+    widget.appendChild(messageElement, widget.firstChild); // Add message to the top of the widget
+  }
+};
 
 const removeProactiveMessages = () => {
   const proactiveContainer = document.querySelector('#proactive-messages-container');
