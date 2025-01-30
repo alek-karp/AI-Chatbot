@@ -257,14 +257,14 @@ const addMessagesToConversationHistory = (history) => {
             </svg>
           </button>
         </div>
-        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto">
+        <div id="chat-messages" style="background: white;" class="flex-1 p-4 overflow-y-auto">
         <div class="hero-container-intro flex flex-col justify-center items-center mb-6 p-8">
             <img class="hero-container-intro-img w-16 h-16" src="https://cm4-production-assets.s3.amazonaws.com/1731862489163-unnamed-1.png" />
             <h1 class="m-2 text-lg font-semibold">Wirtualny Asystent</h1>
             <p class="text-gray-600 text-center">Jestem wirtualnym asystentem z BNM, dostępny dla Ciebie 24/7.</p>
         </div>
         </div>
-        <div id="chat-input-container" class="p-4">
+        <div id="chat-input-container" style="background: white;" class="p-4">
           <div class="flex space-x-4 items-center">
             <textarea type="text" rows="1" id="chat-input" class="flex-1 border border-gray-300 rounded-md px-4 py-2 outline-none w-3/4" placeholder="Message..."></textarea>
             <button id="chat-submit" class="bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Send</button>
