@@ -146,8 +146,9 @@ const addMessagesToConversationHistory = (history) => {
         gap: 0.5rem;
 
         textarea {
-            border: 1px solid #000;
-            border-radius: 2px;
+            color: #000;
+            border: 1.5px solid #000;
+            border-radius: 5px;
             resize: none;
             width: 100%;
         }
@@ -155,7 +156,7 @@ const addMessagesToConversationHistory = (history) => {
     .custom-chat-container {
       background-color: rgb(31, 41, 55); /* bg-gray-800 */
       color: white; /* text-white */
-      border-radius: 0.375rem; /* rounded-md */
+      border-radius: 5px; /* rounded-md */
       padding: 8px 16px; /* px-4 py-2 */
     }
 
@@ -212,12 +213,13 @@ const addMessagesToConversationHistory = (history) => {
     }
 
     .hero-container-intro {
-      padding: 2rem;
+      padding: 1.5rem;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       display: flex;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
     }
 
     .hero-container-intro-img {
@@ -242,6 +244,7 @@ const addMessagesToConversationHistory = (history) => {
       overflow: hidden;
       font-family: 'Tinos', serif; /* Apply Tinos font */
     }
+
     @media (max-width: 768px) {
         #chat-widget-container {
         bottom: 20px;
@@ -263,7 +266,7 @@ const addMessagesToConversationHistory = (history) => {
     }
     `;
     document.head.appendChild(style);
-  
+
     // Create the chat widget container
     const chatWidgetContainer = document.createElement('div');
     chatWidgetContainer.id = 'chat-widget-container';
