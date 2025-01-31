@@ -130,7 +130,17 @@ const addMessagesToConversationHistory = (history) => {
     .custom-hidden {
       display: none !important;
     }
-          
+    
+    #reply-message {
+      border-left: 3px solid rgb(31, 41, 55);
+      padding-left: 1rem;
+    }
+    
+    #user-message {
+      border-left: 3px solid #21f5c2;
+      padding-left: 1rem;
+    }
+
     .custom-display {
       display: flex !important;
     }
