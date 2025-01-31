@@ -140,7 +140,7 @@ const addMessagesToConversationHistory = (history) => {
       color: rgb(0, 0, 0);                   /* text-black */
       border-radius: 0.5rem;                 /* rounded-lg */
       padding: 0.5rem 1rem;                  /* py-2 px-4 */
-      max-width: 50%;                        /* max-w-[70%] */                         /* flex */
+      max-width: 70%;                        /* max-w-[70%] */                         /* flex */
       align-items: center;
       justify-content: flex-start;
       margin-right: auto;
@@ -152,7 +152,7 @@ const addMessagesToConversationHistory = (history) => {
       color: white;                   /* text-white */
       border-radius: 0.5rem;                 /* rounded-lg */
       padding: 0.5rem 1rem;                  /* py-2 px-4 */
-      max-width: 50%;                        /* max-w-[70%] */
+      max-width: 70%;                        /* max-w-[70%] */
       display: flex;                         /* flex */
       align-items: center;
       justify-content: flex-end;
@@ -164,7 +164,13 @@ const addMessagesToConversationHistory = (history) => {
     }
 
     #close-popup {
-      background-color: white;
+      background-color: #100F2D;
+      border: none;
+    }
+
+    #chat-input-container {
+      border-top: 2rem;
+      bottom-radius: 0.5rem;
     }
 
     #chat-input-container-2 {
@@ -172,10 +178,12 @@ const addMessagesToConversationHistory = (history) => {
         flex-direction: row;
         justify-content: space-between;
         gap: 0.5rem;
+        bottom-radius: 0.5rem;
+
 
         textarea {
             color: #000;
-            border: 1.5px solid #000;
+            border: 1.5px solid #e5e7eb;
             border-radius: 5px;
             resize: none;
             width: 100%;
@@ -242,6 +250,7 @@ const addMessagesToConversationHistory = (history) => {
     .chat-spacer-top-img {
       width: 1.5rem;
       height: 1.5rem;
+      color: white;
     }
 
     .hero-container-intro {
@@ -251,7 +260,20 @@ const addMessagesToConversationHistory = (history) => {
       flex-direction: column;
       display: flex;
       margin-bottom: 1rem;
-      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 1rem;
+
+        h3 {
+          font-weight: 600;
+          color: #000;
+        }
+        
+        p {
+          text-align: center;
+          margin-top: .25rem;
+          margin-bottom: .25rem;
+          border-bottom: 1px solid #e5e7eb;
+          padding-bottom: 1rem;
+        }
     }
 
     .hero-container-intro-img {
@@ -270,8 +292,8 @@ const addMessagesToConversationHistory = (history) => {
       align-items: flex-end;
 
     #chat-popup {
-      height: 70vh;
-      max-height: 70vh;
+      height: 85vh;
+      max-height: 100%;
       max-width: 75%;
       width: 75%;
       transition: all 0.3s;
@@ -304,6 +326,7 @@ const addMessagesToConversationHistory = (history) => {
       background: white;
       flex: 1;
       padding: 1rem;
+      padding-bottom: 5rem;
       overflow-y: auto;
     }
     `;
@@ -338,7 +361,7 @@ const addMessagesToConversationHistory = (history) => {
         <div id="chat-messages" style="background: white;" class="flex-1 p-4 overflow-y-auto">
         <div class="hero-container-intro flex flex-col justify-center items-center mb-6 p-8">
             <img class="hero-container-intro-img w-16 h-16" src="https://cm4-production-assets.s3.amazonaws.com/1731862489163-unnamed-1.png" />
-            <h1 class="m-2 text-lg font-semibold">Wirtualny Asystent</h1>
+            <h3 class="m-2 text-lg font-semibold">Wirtualny Asystent</h3>
             <p class="text-gray-600 text-center">Jestem wirtualnym asystentem z BNM, dostępny dla Ciebie 24/7.</p>
         </div>
         </div>
