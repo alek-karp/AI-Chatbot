@@ -130,7 +130,7 @@ const addMessagesToConversationHistory = (history) => {
     .custom-hidden {
       display: none !important;
     }
-    
+          
     .custom-display {
       display: flex !important;
     }
@@ -187,6 +187,10 @@ const addMessagesToConversationHistory = (history) => {
       border-width: 1px;
       border-radius: .5rem;
       max-width: max-content;
+    }
+
+    #chat-submit {
+      border: 0;
     }
 
     #chat-header {
@@ -377,7 +381,7 @@ const addMessagesToConversationHistory = (history) => {
       const messageElement = document.createElement('div');
       messageElement.className = 'flex justify-end mb-3';
       messageElement.innerHTML = `
-        <div class="bg-gray-800 text-white rounded-lg py-2 px-4 max-w-[70%]">
+        <div id="user-message" class="bg-gray-800 text-white rounded-lg py-2 px-4 max-w-[70%]">
           ${formatMessageWithNewLines(message)}
         </div>
       `;
@@ -389,7 +393,7 @@ const addMessagesToConversationHistory = (history) => {
       const replyElement = document.createElement('div');
       replyElement.className = 'flex mb-3';
       replyElement.innerHTML = `
-        <div class="bg-gray-200 text-black rounded-lg py-2 px-4 max-w-[70%]">
+        <div id="reply-message" class="bg-gray-200 text-black rounded-lg py-2 px-4 max-w-[70%]">
           ${parseMarkdownToHtml(message)}
         </div>
       `;
