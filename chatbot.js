@@ -130,15 +130,33 @@ const addMessagesToConversationHistory = (history) => {
     .custom-hidden {
       display: none !important;
     }
+
+    .message-container {
+      display: flex;
+    }
     
     #reply-message {
-      border-left: 3px solid rgb(31, 41, 55);
-      padding-left: 1rem;
+      background-color: #E5E7EB;  /* bg-gray-200 */
+      color: rgb(0, 0, 0);                   /* text-black */
+      border-radius: 0.5rem;                 /* rounded-lg */
+      padding: 0.5rem 1rem;                  /* py-2 px-4 */
+      max-width: 50%;                        /* max-w-[70%] */                         /* flex */
+      align-items: center;
+      justify-content: flex-start;
+      margin-right: auto;
     }
     
     #user-message {
-      border-left: 3px solid #21f5c2;
-      padding-left: 1rem;
+      border: 2px solid #1F2937;
+      background-color: rgb(0, 0, 0);                   /* text-black */
+      color: white;                   /* text-white */
+      border-radius: 0.5rem;                 /* rounded-lg */
+      padding: 0.5rem 1rem;                  /* py-2 px-4 */
+      max-width: 50%;                        /* max-w-[70%] */
+      display: flex;                         /* flex */
+      align-items: center;
+      justify-content: flex-end;
+      margin-left: auto;
     }
 
     .custom-display {
@@ -254,6 +272,8 @@ const addMessagesToConversationHistory = (history) => {
     #chat-popup {
       height: 70vh;
       max-height: 70vh;
+      max-width: 75%;
+      width: 75%;
       transition: all 0.3s;
       overflow: hidden;
       font-family: 'Tinos', serif; /* Apply Tinos font */
@@ -277,6 +297,14 @@ const addMessagesToConversationHistory = (history) => {
       }
     }
       
+    }
+
+
+    #chat-messages {
+      background: white;
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
     }
     `;
     document.head.appendChild(style);
@@ -389,7 +417,7 @@ const addMessagesToConversationHistory = (history) => {
   
     function displayUserMessage(message) {
       const messageElement = document.createElement('div');
-      messageElement.className = 'flex justify-end mb-3';
+      messageElement.className = 'message-container flex justify-end mb-3';
       messageElement.innerHTML = `
         <div id="user-message" class="bg-gray-800 text-white rounded-lg py-2 px-4 max-w-[70%]">
           ${formatMessageWithNewLines(message)}
@@ -401,7 +429,7 @@ const addMessagesToConversationHistory = (history) => {
   
     function displayReplyMessage(message) {
       const replyElement = document.createElement('div');
-      replyElement.className = 'flex mb-3';
+      replyElement.className = 'message-container flex justify-start mb-3';
       replyElement.innerHTML = `
         <div id="reply-message" class="bg-gray-200 text-black rounded-lg py-2 px-4 max-w-[70%]">
           ${parseMarkdownToHtml(message)}
