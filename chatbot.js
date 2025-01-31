@@ -128,7 +128,40 @@ const addMessagesToConversationHistory = (history) => {
     const style = document.createElement('style');
     style.innerHTML = `
     .custom-hidden {
-      display: none;
+      display: none !important;
+    }
+    
+    .custom-display {
+      display: flex !important;
+    }
+
+    #close-popup {
+      background-color: white;
+    }
+
+    #chat-input-container-2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0.5rem;
+
+        textarea {
+            border: 1px solid #000;
+            border-radius: 2px;
+            resize: none;
+            width: 100%;
+        }
+    }
+    .custom-chat-container {
+      background-color: rgb(31, 41, 55); /* bg-gray-800 */
+      color: white; /* text-white */
+      border-radius: 0.375rem; /* rounded-md */
+      padding: 8px 16px; /* px-4 py-2 */
+    }
+
+    .custom-chat-container:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     .custom-icon-container {
@@ -202,7 +235,7 @@ const addMessagesToConversationHistory = (history) => {
       font-family: 'Tinos', serif; /* Apply Tinos font */
       align-items: flex-end;
 
-          #chat-popup {
+    #chat-popup {
       height: 70vh;
       max-height: 70vh;
       transition: all 0.3s;
@@ -265,9 +298,9 @@ const addMessagesToConversationHistory = (history) => {
         </div>
         </div>
         <div id="chat-input-container" style="background: white;" class="p-4">
-          <div class="flex space-x-4 items-center">
+          <div id="chat-input-container-2">
             <textarea type="text" rows="1" id="chat-input" class="flex-1 border border-gray-300 rounded-md px-4 py-2 outline-none w-3/4" placeholder="Message..."></textarea>
-            <button id="chat-submit" class="bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Send</button>
+            <button id="chat-submit" class="custom-chat-container bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Send</button>
           </div>
         </div>
       </div>
@@ -307,20 +340,24 @@ const addMessagesToConversationHistory = (history) => {
   
     chatBubble.addEventListener('click', function() {
       removeProactiveMessages();
+      chatBubble.classList.toggle('custom-hidden');
       togglePopup();
       initializeChatWidget();
     });
   
     closePopup.addEventListener('click', function() {
       togglePopup();
+      chatBubble.classList.toggle("custom-hidden");
+
     });
   
     function togglePopup() {
       chatPopup.classList.toggle('custom-hidden');
-      
+
       if (!chatPopup.classList.contains('custom-hidden')) {
         chatInput.focus();
       }
+
     }
   
     let threadId = null;
