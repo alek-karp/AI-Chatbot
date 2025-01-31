@@ -140,7 +140,7 @@ const addMessagesToConversationHistory = (history) => {
       color: rgb(0, 0, 0);                   /* text-black */
       border-radius: 0.5rem;                 /* rounded-lg */
       padding: 0.5rem 1rem;                  /* py-2 px-4 */
-      max-width: 50%;                        /* max-w-[70%] */                         /* flex */
+      max-width: 70%;                        /* max-w-[70%] */                         /* flex */
       align-items: center;
       justify-content: flex-start;
       margin-right: auto;
@@ -152,7 +152,7 @@ const addMessagesToConversationHistory = (history) => {
       color: white;                   /* text-white */
       border-radius: 0.5rem;                 /* rounded-lg */
       padding: 0.5rem 1rem;                  /* py-2 px-4 */
-      max-width: 50%;                        /* max-w-[70%] */
+      max-width: 70%;                        /* max-w-[70%] */
       display: flex;                         /* flex */
       align-items: center;
       justify-content: flex-end;
@@ -164,7 +164,15 @@ const addMessagesToConversationHistory = (history) => {
     }
 
     #close-popup {
-      background-color: white;
+      background-color: #100F2D;
+      border: none;
+    }
+
+    #chat-input-container {
+      border-top: 2rem;
+      border-bottom-left-radius: .5rem;
+      border-bottom-right-radius: .5rem;
+      box-shadow: var(--shadow-md);
     }
 
     #chat-input-container-2 {
@@ -172,10 +180,12 @@ const addMessagesToConversationHistory = (history) => {
         flex-direction: row;
         justify-content: space-between;
         gap: 0.5rem;
+        bottom-radius: 0.5rem;
+
 
         textarea {
             color: #000;
-            border: 1.5px solid #000;
+            border: 1.5px solid #e5e7eb;
             border-radius: 5px;
             resize: none;
             width: 100%;
@@ -242,6 +252,7 @@ const addMessagesToConversationHistory = (history) => {
     .chat-spacer-top-img {
       width: 1.5rem;
       height: 1.5rem;
+      color: white;
     }
 
     .hero-container-intro {
@@ -251,7 +262,20 @@ const addMessagesToConversationHistory = (history) => {
       flex-direction: column;
       display: flex;
       margin-bottom: 1rem;
-      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 1rem;
+
+        h3 {
+          font-weight: 600;
+          color: #000;
+        }
+        
+        p {
+          text-align: center;
+          margin-top: .25rem;
+          margin-bottom: .25rem;
+          border-bottom: 1px solid #e5e7eb;
+          padding-bottom: 1rem;
+        }
     }
 
     .hero-container-intro-img {
@@ -260,7 +284,6 @@ const addMessagesToConversationHistory = (history) => {
     }
     
     #chat-widget-container {
-
       position: fixed;
       bottom: 60px;
       right: 20px;
@@ -268,15 +291,30 @@ const addMessagesToConversationHistory = (history) => {
       flex-direction: column;
       font-family: 'Tinos', serif; /* Apply Tinos font */
       align-items: flex-end;
+      height; 760px;
+      width: 560px; 
+
+    }
 
     #chat-popup {
-      height: 70vh;
-      max-height: 70vh;
-      max-width: 75%;
-      width: 75%;
+      height: 560px;
+      width: 360px;
       transition: all 0.3s;
-      overflow: hidden;
+      overflow: auto;
       font-family: 'Tinos', serif; /* Apply Tinos font */
+
+      &::-webkit-scrollbar {
+        width: 2px;
+      }
+    
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+    
+      &::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 5px;
+      }
     }
 
     @media (max-width: 768px) {
@@ -304,7 +342,14 @@ const addMessagesToConversationHistory = (history) => {
       background: white;
       flex: 1;
       padding: 1rem;
-      overflow-y: auto;
+      padding-bottom: 5rem;
+      flex-direction: column;
+      display: flex;
+    }
+
+
+    #custom-shadow-chat {
+      box-shadow: 2px 2px 4px gray;
     }
     `;
     document.head.appendChild(style);
@@ -324,31 +369,36 @@ const addMessagesToConversationHistory = (history) => {
         <img class="h-12 w-12" src="data:image/svg+xml,%3csvg%20viewBox='0%200%2036%2036'%20xmlns='http://www.w3.org/2000/svg'%20xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cg%20stroke='none'%20stroke-width='1'%20fill='none'%20fill-rule='evenodd'%3e%3cpath%20d='M18.0000533,7%20C24.6266329,7%2030,11.4789312%2030,16.9976931%20C30,22.5163617%2024.6266329,26.9953062%2018.0000533,26.9953062%20C17.123351,26.9971724%2016.2483812,26.9169271%2015.386606,26.7553699%20C14.0404188,27.7431078%2012.5315125,28.4873102%2010.9284053,28.9541197%20C10.4583473,29.0903502%209.95341047,28.916663%209.66660965,28.5199682%20C9.37982216,28.1234068%209.37297168,27.5894152%209.64952342,27.1855224%20C10.1505552,26.5172998%2010.5515886,25.7796289%2010.840002,24.9957036%20C7.9365286,23.3624038%206.10015838,20.3278759%206,16.9976931%20C6,11.4789179%2011.3733271,7%2018.0000533,7%20Z%20M18.0000533,18.0020932%20L14.0000889,18.0020932%20L13.8644511,18.0112196%20C13.3765531,18.0774186%2013.0005042,18.4957012%2013.0005042,19.0018279%20C13.0005042,19.5539661%2013.4480335,20.0015625%2014.0000889,20.0015625%20L18.0000533,20.0015625%20L18.135691,19.9924361%20C18.623589,19.9262371%2018.9996379,19.5079545%2018.9996379,19.0018279%20C18.9996379,18.4496896%2018.5521087,18.0020932%2018.0000533,18.0020932%20Z%20M22.0001244,14.001515%20L14.0000889,14.001515%20L13.8644511,14.0106414%20C13.3765531,14.0768404%2013.0005042,14.495123%2013.0005042,15.0012497%20C13.0005042,15.5533879%2013.4480335,16.0009843%2014.0000889,16.0009843%20L22.0001244,16.0009843%20L22.1357621,15.9918579%20C22.6236601,15.9256589%2022.999709,15.5073764%2022.999709,15.0012497%20C22.999709,14.4491115%2022.5521797,14.001515%2022.0001244,14.001515%20Z'%20fill='%23ffffff'%3e%3c/path%3e%3c/g%3e%3c/svg%3e" />
       </div>
       <div id="chat-popup" class="custom-hidden hidden absolute bottom-20 right-0 w-96 bg-white rounded-md shadow-md flex flex-col transition-all text-sm">
+      <div id="custom-shadow-chat">
         <div  style="background-color: #100F2D;" id="chat-header" class="flex justify-between items-center p-2 text-sm text-white rounded-t-lg">
-        <div class="chat-spacer-top flex gap-x-2">
-         <img class="chat-spacer-top-img w-6 w-max-6 h-6 h-max-6" src="https://cm4-production-assets.s3.amazonaws.com/1729313423218-apple-touch-icon.png" />  
-        <h3 class="m-0 text-base">Wirtualny Asystent</h3>
-        </div>
-          <button id="close-popup" class="bg-transparent border-none text-white cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 chat-spacer-top-img" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
+          <div class="chat-spacer-top flex gap-x-2">
+          <img class="chat-spacer-top-img w-6 w-max-6 h-6 h-max-6" src="https://cm4-production-assets.s3.amazonaws.com/1729313423218-apple-touch-icon.png" />  
+          <h3 class="m-0 text-base">Wirtualny Asystent</h3>
+          </div>
+            <button id="close-popup" class="bg-transparent border-none text-white cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 chat-spacer-top-img" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
         <div id="chat-messages" style="background: white;" class="flex-1 p-4 overflow-y-auto">
         <div class="hero-container-intro flex flex-col justify-center items-center mb-6 p-8">
             <img class="hero-container-intro-img w-16 h-16" src="https://cm4-production-assets.s3.amazonaws.com/1731862489163-unnamed-1.png" />
-            <h1 class="m-2 text-lg font-semibold">Wirtualny Asystent</h1>
+            <h3 class="m-2 text-lg font-semibold">Wirtualny Asystent</h3>
             <p class="text-gray-600 text-center">Jestem wirtualnym asystentem z BNM, dostępny dla Ciebie 24/7.</p>
         </div>
         </div>
-        <div id="chat-input-container" style="background: white;" class="p-4">
-          <div id="chat-input-container-2">
-            <textarea type="text" rows="1" id="chat-input" class="flex-1 border border-gray-300 rounded-md px-4 py-2 outline-none w-3/4" placeholder="Message..."></textarea>
-            <button id="chat-submit" class="custom-chat-container bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Send</button>
+        <div>
+          <div id="chat-input-container" style="background: white;" class="p-4">
+            <div id="chat-input-container-2">
+              <textarea type="text" rows="1" id="chat-input" class="flex-1 border border-gray-300 rounded-md px-4 py-2 outline-none w-3/4" placeholder="Message..."></textarea>
+              <button id="chat-submit" class="custom-chat-container bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">Send</button>
+            </div>
           </div>
         </div>
       </div>
+    </div>
     `;
   
     // Add event listeners
