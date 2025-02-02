@@ -295,15 +295,22 @@ const addMessagesToConversationHistory = (history) => {
       width: 560px; 
 
     }
-
+      
     #chat-popup {
       height: 560px;
       width: 360px;
       transition: all 0.3s;
-      overflow: auto;
-      font-family: 'Tinos', serif; /* Apply Tinos font */
+      font-family: 'Tinos', serif;
+    }
 
-      &::-webkit-scrollbar {
+    #chat-messages {
+      background: white;
+      padding: 1rem;
+      padding-bottom: 5rem;
+      max-height: 300px; /* Set a fixed height */
+      overflow-y: auto;
+
+    &::-webkit-scrollbar {
         width: 2px;
       }
     
@@ -315,36 +322,7 @@ const addMessagesToConversationHistory = (history) => {
           background: #888;
           border-radius: 5px;
       }
-    }
 
-    @media (max-width: 768px) {
-        #chat-widget-container {
-        bottom: 20px;
-      }
-      #chat-popup {
-        background: white;
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        max-height: 100%;
-        border-radius: 0;
-      }
-    }
-      
-    }
-
-
-    #chat-messages {
-      background: white;
-      flex: 1;
-      padding: 1rem;
-      padding-bottom: 5rem;
-      flex-direction: column;
-      display: flex;
     }
 
 
@@ -382,7 +360,7 @@ const addMessagesToConversationHistory = (history) => {
             </button>
           </div>
 
-        <div id="chat-messages" style="background: white;" class="flex-1 p-4 overflow-y-auto">
+        <div id="chat-messages">
         <div class="hero-container-intro flex flex-col justify-center items-center mb-6 p-8">
             <img class="hero-container-intro-img w-16 h-16" src="https://cm4-production-assets.s3.amazonaws.com/1731862489163-unnamed-1.png" />
             <h3 class="m-2 text-lg font-semibold">Wirtualny Asystent</h3>
