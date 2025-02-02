@@ -306,7 +306,6 @@ const addMessagesToConversationHistory = (history) => {
     #chat-messages {
       background: white;
       padding: 1rem;
-      padding-bottom: 5rem;
       max-height: 300px; /* Set a fixed height */
       overflow-y: auto;
 
@@ -327,7 +326,11 @@ const addMessagesToConversationHistory = (history) => {
 
 
     #custom-shadow-chat {
-      box-shadow: 2px 2px 4px gray;
+      box-shadow: 2px 2px 4px rgb(45, 45, 45);
+      border-top-left-radius: .5rem;
+      border-top-right-radius: .5rem;
+      border-bottom-left-radius: .5rem;
+      border-bottom-right-radius: .5rem;
     }
     `;
     document.head.appendChild(style);
